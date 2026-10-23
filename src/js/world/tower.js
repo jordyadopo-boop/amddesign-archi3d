@@ -385,5 +385,5 @@ export function createTower(kit, { x: TX, z: TZ, base = '/' }) {
     holo.userData.solid.scale.y = Math.max(0.001, p);
   }
 
-  return { group, shots, outsideVia, entryVia, update, inside, top };
+  return { group, shots, outsideVia, entryVia, update, inside, top, toWorld };
 }

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>AMD Design · vidéo de présentation</title>
+  <link rel="stylesheet" href="./video.css">
+  <script type="module" src="./video.js"></script>
+</head>
+<body>
+  <div class="stage" id="stage">
+    <canvas class="world" id="world"></canvas>
+    <div class="grade"></div>
+    <div class="dim" id="dim"></div>
+
+    <!-- 1. Logo -->
+    <div class="card card--logo" id="logo">
+      <svg class="logo-svg" viewBox="0 0 210 92" aria-hidden="true">
+        <g fill="none" stroke="#f7f5f2" stroke-width="10"><path d="M6 84 L46 12 L86 84"/><path d="M96 84 V30 L121 60 L146 30 V84"/><path d="M160 26 V84 H174 A29 29 0 0 0 174 26 Z"/></g>
+        <g fill="#c8902e" class="win"><rect x="38" y="48" width="7" height="7"/><rect x="47" y="48" width="7" height="7"/><rect x="38" y="57" width="7" height="7"/><rect x="47" y="57" width="7" height="7"/></g>
+        <path d="M174 40 A15 15 0 0 1 174 70" fill="none" stroke="#c8902e" stroke-width="4"/>
+      </svg>
+      <p class="logo-word">AMD <b>DESIGN</b></p>
+      <span class="logo-rule"></span>
+    </div>
+
+    <!-- 2. Piliers -->
+    <div class="pillars" id="pillars"><span>Architecture</span><i></i><span>Bâtiment</span><i></i><span>Urbanisme</span><i></i><span class="gold">3D</span></div>
+
+    <!-- 3. Accroche -->
+    <h1 class="title" id="title">Concevoir aujourd'hui<br>pour mieux <span class="gold">construire</span> demain.</h1>
+
+    <!-- 4. De l'idée à la réalité -->
+    <div class="idea" id="idea"><span class="idea__a">De l'idée</span><span class="idea__b">à la réalité</span></div>
+
+    <!-- 5. Services -->
+    <div class="svc" id="svc">
+      <div class="svc__frame"><i></i><i></i><i></i><i></i></div>
+      <p class="svc__n"><b data-n>01</b> / 06 · <span data-floor>R+8</span></p>
+      <svg class="svc__ico" viewBox="0 0 48 48" aria-hidden="true"><path data-ico d=""/></svg>
+      <h2 class="svc__t" data-t></h2>
+      <p class="svc__p" data-p></p>
+    </div>
+
+    <!-- 6. Le site -->
+    <div class="site" id="site">
+      <div class="browser" id="browser">
+        <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url">🔒 www.amddesign-archi3d.com</span></div>
+        <div class="browser__screen" id="screen">
+          <img src="./shots/site-hero.png" alt="">
+          <img src="./shots/site-services.png" alt="">
+          <img src="./shots/site-realisations.png" alt="">
+          <img src="./shots/site-rendu-3d.png" alt="">
+          <img src="./shots/site-fiche.png" alt="">
+        </div>
+        <svg class="pointer" id="pointer" viewBox="0 0 24 24"><path d="M4 2l15 9-7 1.6L8.6 20z" fill="#f7f5f2" stroke="#121212" stroke-width="1.2"/></svg>
+      </div>
+    </div>
+
+    <!-- 7. Fin -->
+    <div class="end" id="end">
+      <p class="end__script">Vous avez un projet ?</p>
+      <h2 class="end__t">Confiez-le à <span class="gold">AMD Design</span></h2>
+      <svg class="logo-svg logo-svg--end" viewBox="0 0 210 92" aria-hidden="true">
+        <g fill="none" stroke="#f7f5f2" stroke-width="10"><path d="M6 84 L46 12 L86 84"/><path d="M96 84 V30 L121 60 L146 30 V84"/><path d="M160 26 V84 H174 A29 29 0 0 0 174 26 Z"/></g>
+        <g fill="#c8902e"><rect x="38" y="48" width="7" height="7"/><rect x="47" y="48" width="7" height="7"/><rect x="38" y="57" width="7" height="7"/><rect x="47" y="57" width="7" height="7"/></g>
+        <path d="M174 40 A15 15 0 0 1 174 70" fill="none" stroke="#c8902e" stroke-width="4"/>
+      </svg>
+      <p class="end__url">www.amddesign-archi3d.com</p>
+      <p class="end__tel"><span>07 57 66 20 91</span><i></i><span>01 73 99 11 48</span><i></i><span>WhatsApp</span></p>
+      <p class="end__motto">De l'idée à la réalité, nous sommes à vos côtés.</p>
+    </div>
+
+    <!-- Habillage permanent -->
+    <div class="chrome" id="chrome">
+      <span class="chrome__c chrome__c--tl"></span><span class="chrome__c chrome__c--tr"></span><span class="chrome__c chrome__c--bl"></span><span class="chrome__c chrome__c--br"></span>
+      <p class="chrome__brand">AMD DESIGN · <span class="gold">ARCHI 3D</span></p>
+      <p class="chrome__url">amddesign-archi3d.com</p>
+      <p class="chrome__label" id="label"></p>
+      <p class="chrome__tc" id="tc">00:00:00</p>
+    </div>
+    <p class="subs" id="subs"></p>
+    <div class="wipe" id="wipe"></div>
+    <div class="grain"></div>
+    <div class="black" id="black"></div>
+  </div>
+</body>
+</html>

@@ -30,7 +30,7 @@ const v3 = (a) => new THREE.Vector3(...a);
 const TOWER = [10, -140];
 const ABIDJAN = { lat: 5.36, lon: -4.008 };
 
-export async function createWorld(canvas, { mobile = false, reduced = false, base = '/', snap = false } = {}) {
+export async function createWorld(canvas, { mobile = false, reduced = false, base = '/', snap = false, manual = false } = {}) {
   // ---------- Rendu ----------
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: !mobile, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1.25 : 1.5));
@@ -253,12 +253,41 @@ export async function createWorld(canvas, { mobile = false, reduced = false, bas
   try { await renderer.compileAsync(scene, camera); } catch { /* compilation au premier rendu */ }
   composer.render();
   await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
-  frame();
+  if (!manual) frame();
+
+  /**
+   * Mode tournage (vidéo) : la composition place elle-même la caméra et le temps, image par image.
+   * s = { t, pos:[x,y,z], look:[x,y,z], night, fov, roll, draw, build, drone:{ pos, alpha }, zone:{…} }
+   */
+  function drive(st) {
+    const t = st.t ?? 0;
+    if (st.draw !== undefined || st.build !== undefined) {
+      intro.draw = st.draw ?? 1; intro.build = st.build ?? 1; applyBuild();
+    }
+    Object.assign(zoneP, st.zone || {});
+    camera.position.set(...st.pos);
+    camera.up.copy(yAxis);
+    camera.lookAt(v3(st.look));
+    if (st.roll) camera.rotateZ(st.roll);
+    camera.fov = st.fov ?? 38; camera.updateProjectionMatrix();
+    const inside = tower.inside(camera.position) !== null;
+    setNight(st.night ?? 0, st.inside ?? (inside ? 1 : 0));
+    if (st.drone) {
+      drone.visible = st.drone.alpha > 0.01;
+      drone.position.set(...st.drone.pos);
+      drone.scale.setScalar(1.6 * st.drone.alpha);
+      drone.rotation.set(st.drone.pitch ?? 0, st.drone.yaw ?? Math.PI, Math.sin(t * 1.7) * 0.06);
+    } else drone.visible = false;
+    outside.update(t);
+    tower.update(t, zoneP);
+    composer.render();
+  }
 
   return {
     setKeyframes(k) { keys = k.filter((x) => SHOTS[x.name]); },
     setZoneProgress(name, p) { zoneP[name] = p; },
     intro: playIntro,
     skipIntro() { if (introTl) introTl.progress(1); },
+    drive, shots: SHOTS, tower, resize,
   };
 }
