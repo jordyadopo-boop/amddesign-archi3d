@@ -32,9 +32,11 @@ jobs:
       - name: Calculer le chemin de base
         id: base
         run: |
-          # Avec un domaine personnalisé (fichier public/CNAME), le site est servi à la racine.
-          if [ -f public/CNAME ]; then echo "path=/" >> "$GITHUB_OUTPUT";
-          else echo "path=/${GITHUB_REPOSITORY#*/}/" >> "$GITHUB_OUTPUT"; fi
+          # Servi à la racine avec un domaine personnalisé (public/CNAME) ou un dépôt <compte>.github.io ;
+          # sinon dans le sous-dossier /<dépôt>/.
+          REPO="${GITHUB_REPOSITORY#*/}"
+          if [ -f public/CNAME ] || [[ "$REPO" == *.github.io ]]; then echo "path=/" >> "$GITHUB_OUTPUT";
+          else echo "path=/$REPO/" >> "$GITHUB_OUTPUT"; fi
       - name: Construire le site
         run: npm run build
         env:
