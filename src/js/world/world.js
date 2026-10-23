@@ -84,8 +84,9 @@ export async function createWorld(canvas, { mobile = false, reduced = false, bas
     M.glassLit.uniforms.glow.value = lerp(0, 0.5, smooth((n - 0.15) / 0.6));
     M.glassLit.uniforms.opacity.value = lerp(0.04, 0.12, smooth((n - 0.15) / 0.6));
     M.water.uniforms.glow.value = lerp(0, 0.8, n);
-    if (bloom) bloom.strength = lerp(0.3, inside ? 0.3 : 0.6, n);
-    SHARED.fade.value = lerp(SHARED.fade.value, inside ? 0.6 : 1, 0.08);
+    // inside : 0 dehors → 1 dedans, déjà lissé (aucune bascule brutale de luminosité)
+    if (bloom) bloom.strength = lerp(0.3, lerp(0.6, 0.3, inside), n);
+    SHARED.fade.value = lerp(1, 0.6, inside);
   }
 
   // ---------- Vol ----------
@@ -93,7 +94,7 @@ export async function createWorld(canvas, { mobile = false, reduced = false, bas
   const zoneP = {};
   const cam = { pos: v3(SHOTS.duplex.pos), look: v3(SHOTS.duplex.look), night: 0 };
   const want = { pos: cam.pos.clone(), look: cam.look.clone(), night: 0, label: SHOTS.duplex.label, zone: 'duplex' };
-  let piloted = true, roll = 0, speed = 0;
+  let piloted = true, roll = 0, speed = 0, insideK = 0;
   const prev = new THREE.Vector3();
 
   const curves = new Map();
@@ -192,6 +193,7 @@ export async function createWorld(canvas, { mobile = false, reduced = false, bas
       cam.night = lerp(cam.night, want.night, instant ? 1 : 1 - Math.exp(-dt * 1.5));
     }
     const lvl = tower.inside(cam.pos), inside = lvl !== null;
+    insideK = lerp(insideK, inside ? 1 : 0, 1 - Math.exp(-dt * 1.2));
 
     // Flottement du drone, regard qui suit la souris, inclinaison dans les virages
     const amp = inside ? 0.4 : 1;
@@ -209,7 +211,7 @@ export async function createWorld(canvas, { mobile = false, reduced = false, bas
     const fov = (innerWidth < 760 ? 54 : 38) + (inside ? 14 : 0);
     if (Math.abs(camera.fov - fov) > 0.05) { camera.fov = lerp(camera.fov, fov, 1 - Math.exp(-dt * 2)); camera.updateProjectionMatrix(); }
 
-    setNight(cam.night, inside);
+    setNight(cam.night, insideK);
 
 
     // Le petit drone : il attend devant le duplex, puis file vers la tour (on voit alors ce qu'il voit)
@@ -224,10 +226,6 @@ export async function createWorld(canvas, { mobile = false, reduced = false, bas
     outside.update(t);
     tower.update(t, zoneP);
 
-    film.uniforms.uTime.value = t;
-    film.uniforms.uGrain.value = reduced ? 0.05 : 0.09;
-    film.uniforms.uLeak.value = lerp(film.uniforms.uLeak.value, reduced ? 0 : clamp((speed - 6) / 30) * 0.45, 1 - Math.exp(-dt * 4));
-    film.uniforms.uLeakPos.value = 0.25 + 0.2 * Math.sin(t * 0.21);
     composer.render();
 
     if (++hudTick % 6 === 0) {

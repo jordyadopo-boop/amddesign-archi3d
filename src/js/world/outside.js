@@ -217,8 +217,7 @@ export function createOutside(kit, scene, { towerAt }) {
   function update(t) {
     jib.rotation.y = Math.sin(t * 0.1) * 0.8 - 0.6;
     load.position.x = 30 + Math.sin(t * 0.17) * 6;
-    rotors.forEach((r, i) => { r.rotation.z = t * 40 * (i % 2 ? 1 : -1); r.scale.setScalar(0.85 + 0.15 * Math.sin(t * 60 + i)); });
-    led.visible = Math.sin(t * 6) > 0;
+    rotors.forEach((r, i) => { r.rotation.z = t * 40 * (i % 2 ? 1 : -1);  });
   }
 
   return { duplex, introSketch, drone, update, crossMat: M.cross };
