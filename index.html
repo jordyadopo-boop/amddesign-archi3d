@@ -19,6 +19,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<script>try{if(sessionStorage.getItem('amdIntro')||matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('no-intro');else document.documentElement.classList.add('intro-lock')}catch(e){document.documentElement.classList.add('no-intro')}</script>
+<noscript><style>.intro,.bg-plan,.hud{display:none}html.intro-lock body{overflow:auto}</style></noscript>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -38,6 +40,25 @@
 </script>
 </head>
 <body>
+
+<div class="intro" id="intro">
+  <canvas id="introCanvas"></canvas>
+  <div class="intro__top"><span>AMD Design · Studio d'architecture</span><span class="intro__pct"><b id="introPct">000</b> %</span></div>
+  <p class="intro__step" id="introStep"></p>
+  <div class="intro__brand">
+    <svg viewBox="0 0 210 92" aria-hidden="true">
+      <g fill="none" stroke="#f7f5f2" stroke-width="12"><path pathLength="1" d="M6 84 L46 12 L86 84"/><path pathLength="1" d="M96 84 V30 L121 60 L146 30 V84"/><path pathLength="1" d="M160 26 V84 H174 A29 29 0 0 0 174 26 Z"/></g>
+      <g fill="#c8902e" class="intro__win"><rect x="38" y="48" width="7" height="7"/><rect x="47" y="48" width="7" height="7"/><rect x="38" y="57" width="7" height="7"/><rect x="47" y="57" width="7" height="7"/></g>
+      <path pathLength="1" d="M174 40 A15 15 0 0 1 174 70" fill="none" stroke="#c8902e" stroke-width="4"/>
+    </svg>
+    <p class="intro__name">AMD <b>DESIGN</b></p>
+    <p class="intro__tag">Architecture • Bâtiment • Urbanisme • 3D</p>
+  </div>
+  <button class="intro__skip" id="introSkip" type="button">Passer l'intro →</button>
+</div>
+
+<canvas class="bg-plan" id="bgPlan" aria-hidden="true"></canvas>
+<div class="hud" id="hud" aria-hidden="true"><i></i><span></span></div>
 
 <header class="header" id="header">
   <div class="container header__inner">
@@ -59,7 +80,7 @@
 
 <main>
   <!-- HERO -->
-  <section class="hero" id="accueil">
+  <section class="hero" id="accueil" data-plan="villa 3d">
     <div class="hero__bg" style="background-image:url(img/hero-nuit.svg)"></div>
     <div class="hero__overlay"></div>
     <div class="container hero__content">
@@ -75,7 +96,7 @@
   </section>
 
   <!-- SERVICES -->
-  <section class="section" id="services">
+  <section class="section" id="services" data-plan="villa 2d">
     <div class="container">
       <header class="section__head reveal">
         <p class="eyebrow">Ce que nous faisons</p>
@@ -111,7 +132,7 @@
   </section>
 
   <!-- REALISATIONS -->
-  <section class="section section--dark" id="realisations">
+  <section class="section section--dark" id="realisations" data-plan="tower 3d">
     <div class="container">
       <header class="section__head reveal">
         <p class="eyebrow">Portfolio</p>
@@ -138,7 +159,7 @@
   </section>
 
   <!-- AVANT / APRES -->
-  <section class="section" id="avant-apres">
+  <section class="section" id="avant-apres" data-plan="site 3d">
     <div class="container split">
       <div class="reveal">
         <p class="eyebrow">Visualisation 3D</p>
@@ -161,7 +182,7 @@
   </section>
 
   <!-- ENGAGEMENT -->
-  <section class="section section--light" id="engagement">
+  <section class="section section--light" id="engagement" data-plan="site 2d">
     <div class="container">
       <header class="section__head reveal">
         <p class="eyebrow">Nos valeurs</p>
@@ -177,7 +198,7 @@
   </section>
 
   <!-- PROCESSUS -->
-  <section class="section" id="processus">
+  <section class="section" id="processus" data-plan="villa scroll">
     <div class="container">
       <header class="section__head reveal">
         <p class="eyebrow">Méthode</p>
@@ -194,7 +215,7 @@
   </section>
 
   <!-- DEVIS -->
-  <section class="section section--dark cta" id="devis">
+  <section class="section section--dark cta" id="devis" data-plan="tower 3d">
     <div class="container split">
       <div class="reveal">
         <p class="script">Vous avez un projet ?</p>
@@ -235,7 +256,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="section" id="contact">
+  <section class="section" id="contact" data-plan="tower 2d">
     <div class="container">
       <header class="section__head reveal">
         <p class="eyebrow">Contact</p>
@@ -270,6 +291,7 @@
   <button class="lightbox__nav lightbox__next" aria-label="Suivant">›</button>
 </div>
 
+<script src="js/plan3d.js" defer></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>
