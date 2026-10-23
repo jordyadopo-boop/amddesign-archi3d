@@ -128,7 +128,7 @@ export function createKit() {
       const mode = sg[6] >> 1;
       const a = [sg[0] - ox, sg[2], sg[1] - oy], c = [sg[3] - ox, sg[5], sg[4] - oy];
       if (mode !== 2 && !(sg[2] === 0 && sg[5] === 0)) e.push(...a, ...c);
-      if ((mode === 0 || mode === 2) && sg[2] <= 0 && sg[5] <= 0) p.push(a[0], 0.04, a[2], c[0], 0.04, c[2]);
+      if ((mode === 0 || mode === 2) && sg[2] <= 0 && sg[5] <= 0) p.push(a[0], 0.1, a[2], c[0], 0.1, c[2]);
     }
     const edgeLines = lines(e, L.gold.clone());
     edgeLines.material.opacity = edges;

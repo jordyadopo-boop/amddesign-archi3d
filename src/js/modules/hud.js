@@ -9,11 +9,12 @@ const dms = (v, pos, neg) => {
 
 export default function init(el) {
   const $ = (k) => el.querySelector(`[data-hud="${k}"]`);
-  const alt = $('alt'), cap = $('cap'), spd = $('spd'), gps = $('gps'), zone = $('zone'), time = $('time');
+  const alt = $('alt'), cap = $('cap'), spd = $('spd'), gps = $('gps'), zone = $('zone'), time = $('time'), lvl = $('lvl');
+  let level = null;
   let label = '';
   const t0 = performance.now();
   addEventListener('world:hud', ({ detail: d }) => {
-    alt.textContent = `${d.alt.toFixed(1).padStart(5, '0')} m`;
+    alt.textContent = `${d.alt < 0 ? '−' : ''}${Math.abs(d.alt).toFixed(1).padStart(5, '0')} m`;
     cap.textContent = `${String(Math.round(d.heading)).padStart(3, '0')}°`;
     spd.textContent = `${(d.speed * 3.6).toFixed(0).padStart(2, '0')} km/h`;
     gps.textContent = `${dms(d.lat, 'N', 'S')}  ${dms(d.lon, 'E', 'O')}`;
@@ -23,6 +24,11 @@ export default function init(el) {
       label = d.label;
       zone.classList.remove('is-in'); void zone.offsetWidth;
       zone.textContent = label; zone.classList.add('is-in');
+    }
+    if (d.level !== level) {
+      level = d.level;
+      el.classList.toggle('is-inside', !!level);
+      if (level) { lvl.textContent = level; lvl.classList.remove('is-in'); void lvl.offsetWidth; lvl.classList.add('is-in'); }
     }
     el.style.setProperty('--night', d.night.toFixed(2));
   });

@@ -1,0 +1,9 @@
+/* Transition entre pages : une feuille de plan glisse sur l'écran */
+.pt { position: fixed; inset: 0; z-index: var(--z-transition); visibility: hidden; display: grid; place-items: center; background: #161616;
+  background-image: linear-gradient(rgba(200, 144, 46, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(200, 144, 46, 0.07) 1px, transparent 1px); background-size: 40px 40px; }
+html.pt-in .pt { visibility: visible; }
+.pt__logo { width: min(40vw, 220px); }
+.pt__cartouche { position: absolute; right: 28px; bottom: 28px; display: grid; grid-template-columns: auto auto auto; border: 1px solid var(--line); font: 600 0.64rem var(--font-mono); letter-spacing: 0.16em; text-transform: uppercase; color: #bdb6ab; }
+.pt__cartouche > * { padding: 10px 14px; border-left: 1px solid var(--line); }
+.pt__cartouche > :first-child { border-left: 0; }
+.pt__cartouche b { color: var(--gold-2); }

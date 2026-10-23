@@ -1,0 +1,61 @@
+/* Boutons : rectangles d'architecte, coins cotés */
+.btn {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 0.6em;
+  min-height: 46px; padding: 0.85em 1.6em; border: 1px solid transparent; border-radius: var(--r);
+  font-size: 0.76rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.btn::before, .btn::after { content: ""; position: absolute; width: 8px; height: 8px; border: 1px solid var(--gold-2); opacity: 0; transition: 0.35s var(--ease); }
+.btn::before { left: -5px; top: -5px; border-right: 0; border-bottom: 0; }
+.btn::after { right: -5px; bottom: -5px; border-left: 0; border-top: 0; }
+.btn:hover::before, .btn:hover::after { opacity: 1; }
+.btn:hover::before { left: -8px; top: -8px; }
+.btn:hover::after { right: -8px; bottom: -8px; }
+.btn--gold { background: var(--gold); color: var(--ink); }
+.btn--gold:hover { background: var(--gold-2); }
+.btn--ghost { border-color: rgba(247, 245, 242, 0.45); color: var(--text); }
+.btn--ghost:hover { background: var(--paper); color: var(--ink); }
+.btn--wa { background: var(--wa); color: #08361b; }
+.btn--sm { min-height: 40px; padding: 0.6em 1.2em; }
+.btn--lg { min-height: 54px; padding: 1em 2em; }
+.btn--block { width: 100%; }
+
+/* Panneau : verre sombre + cartouche, coins marqués comme sur un plan */
+.panel {
+  position: relative; max-width: 560px; padding: clamp(24px, 3.6vw, 44px);
+  background: var(--glass); border: 1px solid var(--line); border-radius: var(--r);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(1.15); backdrop-filter: blur(var(--blur)) saturate(1.15);
+  box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.8);
+}
+.panel::before, .panel::after { content: ""; position: absolute; width: 18px; height: 18px; border: 2px solid var(--gold); pointer-events: none; }
+.panel::before { left: -1px; top: -1px; border-right: 0; border-bottom: 0; }
+.panel::after { right: -1px; bottom: -1px; border-left: 0; border-top: 0; }
+.panel--wide { max-width: 660px; }
+.panel--full { max-width: none; }
+.panel__tag {
+  display: flex; align-items: center; gap: 12px; margin: 0 0 1.1rem;
+  font: 600 0.68rem/1 var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-2);
+}
+.panel__tag::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--line), transparent); }
+.panel p { color: var(--text-muted); }
+
+.chip {
+  min-height: 40px; padding: 0.5em 1.2em; border: 1px solid var(--line); border-radius: var(--r); background: transparent; cursor: pointer;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); transition: 0.25s;
+}
+.chip:hover, .chip.is-active { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+.checks { list-style: none; padding: 0; margin: 1.4rem 0 0; }
+.checks li { position: relative; padding-left: 28px; margin-bottom: 0.6rem; }
+.checks li::before { content: ""; position: absolute; left: 0; top: 0.45em; width: 14px; height: 8px; border-left: 2px solid var(--gold); border-bottom: 2px solid var(--gold); transform: rotate(-45deg); }
+
+/* Champs de formulaire */
+.field { display: block; margin-bottom: 16px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+.field input, .field select, .field textarea {
+  display: block; width: 100%; min-height: 48px; margin-top: 8px; padding: 0.8em 1em;
+  background: rgba(10, 10, 10, 0.6); border: 1px solid var(--line-soft); border-radius: var(--r);
+  font: 400 1rem var(--font); color: var(--text); letter-spacing: 0; text-transform: none; transition: border-color 0.2s;
+}
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--gold); }
+.field .is-invalid, .field input[aria-invalid="true"] { border-color: #e0705f; }
+.field small { display: block; margin-top: 6px; font-size: 0.72rem; letter-spacing: 0; text-transform: none; color: var(--grey); font-weight: 400; }

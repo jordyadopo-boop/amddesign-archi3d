@@ -1,0 +1,10 @@
+.page { min-height: 100vh; padding: calc(var(--header-h) + 8vh) 0 12vh; }
+.page__panel { max-width: 860px; }
+.page h1 { font-size: var(--fs-h2); }
+.page h2 { font-size: 0.9rem; letter-spacing: 0.14em; margin: 2em 0 0.6em; color: var(--paper); }
+.page a:not(.btn) { color: var(--gold-2); text-decoration: underline; text-underline-offset: 3px; }
+.page__todo { padding: 12px 14px; border-left: 2px solid var(--gold); background: rgba(200, 144, 46, 0.08); font-size: 0.86rem; }
+.page--404 { display: grid; place-items: center; }
+.nf { text-align: center; margin-inline: auto; }
+.nf__plan { width: min(320px, 80%); margin: 0 auto 1.5rem; }
+.html-no-js .world--lite { display: none; }

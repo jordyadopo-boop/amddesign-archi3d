@@ -1,0 +1,5 @@
+.fab { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom)); z-index: var(--z-fab); display: flex; align-items: center; gap: 10px; height: 56px; padding: 0 18px 0 16px; border-radius: 28px; background: var(--wa); color: #fff; box-shadow: 0 16px 34px -12px rgba(0, 0, 0, 0.6); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.08em; }
+.fab svg { width: 26px; height: 26px; }
+.fab::before { content: ""; position: absolute; inset: 0; border-radius: inherit; animation: fabPulse 2.6s infinite; }
+@keyframes fabPulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); } 70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+@media (max-width: 760px) { .fab { width: 56px; padding: 0; justify-content: center; } .fab__label { display: none; } }

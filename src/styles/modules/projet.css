@@ -1,0 +1,67 @@
+/* Fiche projet : formulaire à gauche, planche vivante à droite */
+.brief { padding: calc(var(--header-h) + 6vh) 0 12vh; }
+.brief__grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
+.brief__head h1 { font-size: var(--fs-h2); }
+.brief__head .lead { margin-bottom: 1.6rem; }
+.brief__steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 0; margin: 0 0 14px; }
+.brief__steps button { width: 100%; min-height: 48px; padding: 8px 10px; border: 1px solid var(--line-soft); border-radius: var(--r); background: rgba(12, 12, 12, 0.6); color: var(--text-muted); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-align: left; cursor: pointer; }
+.brief__steps button b { display: block; font-family: var(--font-mono); color: var(--grey); }
+.brief__steps button[aria-current] { border-color: var(--gold); color: var(--paper); background: rgba(200, 144, 46, 0.12); }
+.brief__steps button[aria-current] b, .brief__steps button.is-done b { color: var(--gold-2); }
+.brief__form { padding: clamp(20px, 3vw, 36px); }
+.brief__step { border: 0; padding: 0; margin: 0; min-width: 0; }
+.brief__step legend { padding: 0; margin-bottom: 1.1rem; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; }
+.brief__label { margin: 1.3rem 0 0.6rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+.brief__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.opt { position: relative; cursor: pointer; }
+.opt input { position: absolute; opacity: 0; inset: 0; }
+.opt span { display: flex; align-items: center; min-height: 46px; height: 100%; padding: 10px 14px; border: 1px solid var(--line-soft); border-radius: var(--r); background: rgba(10, 10, 10, 0.5); font-size: 0.86rem; transition: 0.25s; }
+.cards .opt span { min-height: 64px; font-weight: 600; }
+.opt:hover span { border-color: var(--line); }
+.opt input:checked + span { border-color: var(--gold); background: rgba(200, 144, 46, 0.16); color: var(--paper); box-shadow: inset 3px 0 0 var(--gold); }
+.opt input:focus-visible + span { outline: 2px solid var(--gold-2); outline-offset: 2px; }
+.field--range span, .field > span { display: block; }
+.range { display: flex; align-items: center; gap: 14px; margin-top: 10px; }
+.range input { flex: 1; accent-color: var(--gold); min-height: 32px; }
+.range output { min-width: 84px; font: 700 1rem var(--font-mono); color: var(--gold-2); text-align: right; }
+.stepper { display: inline-flex; align-items: center; margin-top: 8px; border: 1px solid var(--line-soft); border-radius: var(--r); }
+.stepper button { width: 46px; height: 46px; border: 0; background: rgba(10, 10, 10, 0.6); color: var(--paper); font-size: 1.2rem; cursor: pointer; }
+.stepper button:hover { background: var(--gold); color: var(--ink); }
+.stepper output { min-width: 50px; text-align: center; font: 700 1rem var(--font-mono); color: var(--gold-2); }
+.brief__legal { font-size: 0.78rem; color: var(--grey); }
+.brief__error { min-height: 1.4em; margin: 1rem 0 0; color: #ec8b7c; font-size: 0.86rem; }
+.brief__nav, .brief__done { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 10px; }
+.brief__done { justify-content: flex-start; }
+.brief__nav [hidden], .brief__done[hidden] { display: none; }
+
+.brief__sheet { position: sticky; top: calc(var(--header-h) + 20px); }
+.sheet { border: 1px solid var(--line); background: rgba(16, 16, 16, 0.85); -webkit-backdrop-filter: blur(var(--blur)); backdrop-filter: blur(var(--blur)); }
+.sheet__view { position: relative; aspect-ratio: 4 / 3.2; background-image: linear-gradient(rgba(200, 144, 46, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(200, 144, 46, 0.05) 1px, transparent 1px); background-size: 24px 24px; }
+.sheet__view canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sheet__toggle { position: absolute; left: 12px; top: 12px; display: flex; border: 1px solid var(--line); }
+.sheet__toggle button { min-height: 36px; padding: 6px 12px; border: 0; background: rgba(12, 12, 12, 0.7); color: var(--text-muted); font: 600 0.62rem var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; }
+.sheet__toggle button.is-active { background: var(--gold); color: var(--ink); }
+.sheet__scale { position: absolute; right: 12px; bottom: 10px; font: 500 0.58rem var(--font-mono); letter-spacing: 0.14em; color: var(--grey); text-transform: uppercase; }
+.sheet__cartouche { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid var(--line); }
+.sheet__cartouche > div { padding: 10px 12px; border-right: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); min-width: 0; }
+.sheet__cartouche > div:nth-child(3n) { border-right: 0; }
+.sheet__brand { grid-row: span 2; display: grid; place-items: center; }
+.sheet__brand .logo { flex-direction: column; gap: 6px; }
+.sheet__brand .logo-mark { width: 64px; }
+.sheet__brand .logo__word { font-size: 0.62rem; }
+.sheet__cartouche dt { font: 500 0.56rem var(--font-mono); letter-spacing: 0.14em; color: var(--grey); text-transform: uppercase; }
+.sheet__cartouche dd { margin: 3px 0 0; font-size: 0.8rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 960px) {
+  .brief__grid { grid-template-columns: 1fr; }
+  .brief__sheet { position: relative; top: 0; order: -1; }
+  .brief__main { order: 0; }
+}
+@media (max-width: 560px) {
+  .brief__steps { grid-template-columns: repeat(2, 1fr); }
+  .brief__row { grid-template-columns: 1fr; gap: 0; }
+  .sheet__cartouche { grid-template-columns: repeat(2, 1fr); }
+  .sheet__cartouche > div:nth-child(3n) { border-right: 1px solid var(--line-soft); }
+  .sheet__brand { grid-column: 1 / -1; grid-row: auto; }
+}

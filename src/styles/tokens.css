@@ -1,0 +1,52 @@
+/* ==========================================================================
+   AMD Design — tokens. Concept : « du trait à la matière ».
+   La palette de la plaquette : anthracite, noir, or/ocre, blanc cassé. Traits fins dorés,
+   verre sombre, cartouches d'architecte, trame millimétrée.
+   ========================================================================== */
+:root {
+  --ink: #121212;
+  --ink-2: #1e1e1e;
+  --anthracite: #2b2b2b;
+  --gold: #c8902e;
+  --gold-2: #e0ad55;
+  --gold-soft: rgba(200, 144, 46, 0.22);
+  --paper: #f7f5f2;
+  --paper-2: #e9e5df;
+  --grey: #9a958e;
+  --text: #f1ede6;
+  --text-muted: #b9b2a7;
+  --line: rgba(200, 144, 46, 0.28);
+  --line-soft: rgba(247, 245, 242, 0.12);
+  --wa: #25d366;
+
+  --glass: rgba(18, 18, 18, 0.74);
+  --glass-strong: rgba(14, 14, 14, 0.88);
+  --blur: 16px;
+
+  --font: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-script: 'Caveat', cursive;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --fs-hero: clamp(2.5rem, 6.6vw, 6rem);
+  --fs-h2: clamp(1.9rem, 4.2vw, 3.4rem);
+  --fs-h3: clamp(0.95rem, 1.2vw, 1.05rem);
+  --fs-lead: clamp(1.02rem, 1.3vw, 1.2rem);
+
+  --container: 1240px;
+  --gutter: max(16px, min(5vw, 48px));
+  --header-h: 72px;
+  --r: 3px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --z-world: 0;
+  --z-veil: 1;
+  --z-content: 2;
+  --z-hud: 40;
+  --z-fab: 60;
+  --z-header: 100;
+  --z-modal: 300;
+  --z-cursor: 400;
+  --z-preloader: 500;
+  --z-transition: 600;
+}

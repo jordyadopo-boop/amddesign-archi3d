@@ -18,7 +18,7 @@ export default function init(canvas) {
   ready = (async () => {
     if (!webgl()) { document.documentElement.classList.add('no-webgl'); (await import('./plans-fallback.js')).default(canvas); return null; }
     const { createWorld } = await import('../world/world.js');
-    const world = await createWorld(canvas, { mobile: isMobile, reduced: reducedMotion });
+    const world = await createWorld(canvas, { mobile: isMobile, reduced: reducedMotion, base: import.meta.env.BASE_URL, snap: new URLSearchParams(location.search).has('snap') });
     const sections = [...document.querySelectorAll('[data-cam]')];
     const measure = () => {
       world.setKeyframes(sections.map((s) => ({

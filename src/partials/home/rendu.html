@@ -1,0 +1,21 @@
+<section class="scene" id="rendu-3d" data-cam="salle3d" data-cam-progress aria-labelledby="rendu-title">
+  <div class="container scene__inner scene__inner--split">
+    <div class="panel" data-reveal="left">
+      <p class="panel__tag">R+6 · Salle 3D</p>
+      <h2 id="rendu-title" data-split>Du croquis au <span class="gold">rendu 3D</span></h2>
+      <p>Avant de poser la première pierre, voyez votre futur bâtiment : volumes, matériaux, lumière.
+        Dans la salle 3D, la pièce passe du filaire au réel sous vos yeux.</p>
+      <ul class="checks" role="list">
+        <li>Maquette 3D et plans 2D cohérents</li>
+        <li>Images réalistes, de jour comme de nuit</li>
+        <li>Ajustements avant le chantier, pas pendant</li>
+      </ul>
+    </div>
+    <div class="calque" data-module="fx-calque" data-reveal="scale" data-cursor>
+      <img class="calque__render" src="{{base}}img/apres-rendu.svg" alt="Rendu 3D final du projet" loading="lazy">
+      <img class="calque__sketch" data-calque-sketch src="{{base}}img/avant-croquis.svg" alt="" aria-hidden="true">
+      <span class="calque__hint" aria-hidden="true">Effacez le calque pour révéler le rendu</span>
+      <button type="button" class="calque__btn" data-calque-reveal>Révéler le rendu</button>
+    </div>
+  </div>
+</section>

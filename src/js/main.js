@@ -34,6 +34,7 @@ async function boot() {
     }
   }
   await Promise.allSettled(jobs);
+  await document.fonts?.ready;
   initReveals();
   requestAnimationFrame(() => ScrollTrigger.refresh());
   document.documentElement.classList.add('is-ready');

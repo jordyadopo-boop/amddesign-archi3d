@@ -1,0 +1,117 @@
+<!-- Fiche projet (module configurator) : 4 étapes à gauche, planche vivante (esquisse + cartouche) à droite. -->
+<section class="brief" data-module="configurator" aria-labelledby="brief-title">
+  <div class="container brief__grid">
+    <div class="brief__main">
+      <header class="brief__head">
+        <p class="panel__tag">Plan n° FP · Votre fiche projet</p>
+        <h1 id="brief-title" data-split>Décrivez votre <span class="gold">projet</span></h1>
+        <p class="lead">Quatre étapes, quelques minutes. Pendant que vous répondez, votre projet se dessine sur la planche.
+          Vous recevez une fiche PDF et vous l'envoyez à AMD Design sur WhatsApp.</p>
+      </header>
+
+      <ol class="brief__steps" role="list" data-steps>
+        <li><button type="button" data-goto="0" aria-current="step"><b>01</b> Projet</button></li>
+        <li><button type="button" data-goto="1"><b>02</b> Terrain &amp; programme</button></li>
+        <li><button type="button" data-goto="2"><b>03</b> Budget &amp; délai</button></li>
+        <li><button type="button" data-goto="3"><b>04</b> Coordonnées</button></li>
+      </ol>
+
+      <form class="brief__form panel panel--full" data-form novalidate>
+        <fieldset class="brief__step" data-step="0">
+          <legend>Quel est votre projet ?</legend>
+          <div class="cards" data-options="types" data-name="type"></div>
+          <p class="brief__label">Quelles missions souhaitez-vous nous confier ?</p>
+          <div class="tags" data-options="missions" data-name="missions" data-multi></div>
+        </fieldset>
+
+        <fieldset class="brief__step" data-step="1" hidden>
+          <legend>Le terrain et le programme</legend>
+          <div class="tags" data-options="terrain" data-name="terrain"></div>
+          <label class="field">Localisation (commune, quartier)
+            <input name="lieu" type="text" autocomplete="address-level2" placeholder="ex. Cocody, Riviera 3">
+          </label>
+          <div class="field field--range">
+            <span>Surface habitable souhaitée</span>
+            <div class="range"><input name="surface" type="range" min="40" max="2000" step="10" value="180" aria-label="Surface en m²"><output data-surface-out>180 m²</output></div>
+          </div>
+          <p class="brief__label">Nombre de niveaux</p>
+          <div class="tags" data-options="levels" data-name="levels"></div>
+          <div class="brief__row">
+            <div class="field"><span>Chambres</span>
+              <div class="stepper" data-stepper="rooms"><button type="button" data-d="-1" aria-label="Une chambre de moins">−</button><output data-rooms-out>3</output><button type="button" data-d="1" aria-label="Une chambre de plus">+</button></div>
+            </div>
+            <label class="field">Style architectural
+              <select name="style" data-select="styles"></select>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="brief__step" data-step="2" hidden>
+          <legend>Budget et délai</legend>
+          <p class="brief__label">Budget envisagé (indicatif)</p>
+          <div class="tags" data-options="budgets" data-name="budget"></div>
+          <p class="brief__label">Quand souhaitez-vous démarrer ?</p>
+          <div class="tags" data-options="delays" data-name="delay"></div>
+          <label class="field">Votre projet en quelques mots (facultatif)
+            <textarea name="note" rows="4" placeholder="Pièces souhaitées, contraintes du terrain, inspirations…"></textarea>
+          </label>
+        </fieldset>
+
+        <fieldset class="brief__step" data-step="3" hidden>
+          <legend>Vos coordonnées</legend>
+          <div class="brief__row">
+            <label class="field">Nom et prénom *
+              <input name="name" type="text" autocomplete="name" required>
+            </label>
+            <label class="field">Numéro WhatsApp *
+              <input name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="07 00 00 00 00">
+              <small>Pour recevoir notre réponse sur WhatsApp.</small>
+            </label>
+          </div>
+          <div class="brief__row">
+            <label class="field">E-mail (facultatif)
+              <input name="email" type="email" autocomplete="email">
+            </label>
+            <label class="field">Structure / entreprise (facultatif)
+              <input name="company" type="text" autocomplete="organization">
+            </label>
+          </div>
+          <p class="brief__legal">Vos réponses restent dans votre navigateur : elles servent uniquement à créer votre fiche et le message WhatsApp.</p>
+        </fieldset>
+
+        <p class="brief__error" data-error role="alert"></p>
+        <div class="brief__nav">
+          <button type="button" class="btn btn--ghost" data-prev>← Précédent</button>
+          <button type="button" class="btn btn--gold" data-next data-module="fx-magnetic">Suivant →</button>
+        </div>
+        <div class="brief__done" data-done hidden>
+          <button type="button" class="btn btn--gold btn--lg" data-pdf>Télécharger ma fiche (PDF)</button>
+          <button type="button" class="btn btn--wa btn--lg" data-wa>Envoyer sur WhatsApp</button>
+        </div>
+      </form>
+    </div>
+
+    <aside class="brief__sheet" aria-label="Planche de votre projet">
+      <div class="sheet">
+        <div class="sheet__view">
+          <canvas data-sketch aria-hidden="true"></canvas>
+          <div class="sheet__toggle" role="group" aria-label="Vue de l'esquisse">
+            <button type="button" data-view="2d">Plan 2D</button>
+            <button type="button" data-view="3d" class="is-active">Volume 3D</button>
+          </div>
+          <span class="sheet__scale" aria-hidden="true">Esquisse indicative · non contractuelle</span>
+        </div>
+        <dl class="sheet__cartouche" data-cartouche>
+          <div class="sheet__brand"><dt class="sr-only">Cabinet</dt><dd><!-- @include brand/logo-full.html --></dd></div>
+          <div><dt>Projet</dt><dd data-c="type">—</dd></div>
+          <div><dt>Lieu</dt><dd data-c="lieu">—</dd></div>
+          <div><dt>Surface</dt><dd data-c="surface">180 m²</dd></div>
+          <div><dt>Niveaux</dt><dd data-c="levels">—</dd></div>
+          <div><dt>Maître d'ouvrage</dt><dd data-c="name">—</dd></div>
+          <div><dt>Date</dt><dd data-c="date">—</dd></div>
+          <div><dt>N° de fiche</dt><dd data-c="number">—</dd></div>
+        </dl>
+      </div>
+    </aside>
+  </div>
+</section>
