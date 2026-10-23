@@ -90,3 +90,30 @@ body { font-family: 'Montserrat', sans-serif; color: var(--paper); -webkit-font-
 .chrome__url { position: absolute; right: 60px; top: 30px; }
 .chrome__label { position: absolute; right: 60px; bottom: 6px; color: var(--gold-2); }
 .chrome__tc { position: absolute; left: 60px; bottom: 6px; }
+
+/* ---------- Version verticale TikTok (1080×1920) : zones sûres (bas et bord droit réservés à l'application) ---------- */
+.vertical, .vertical body, .vertical .stage, .vertical .world { width: 1080px; height: 1920px; }
+.vertical .logo-svg { width: 300px; }
+.vertical .logo-word { font-size: 34px; }
+.vertical .logo-rule { width: 420px; }
+.vertical .pillars { bottom: 640px; flex-wrap: wrap; gap: 16px 22px; padding: 0 150px 0 70px; font-size: 30px; }
+.vertical .title { left: 64px; right: 150px; bottom: 640px; font-size: 74px; }
+.vertical .idea__a { font-size: 50px; }
+.vertical .idea__b { font-size: 84px; }
+.vertical .idea { top: 44%; padding: 0 60px; }
+.vertical .svc { left: 54px; right: 150px; width: auto; bottom: 560px; padding: 36px 40px 40px; }
+.vertical .svc__t { font-size: 46px; }
+.vertical .svc__p { font-size: 25px; }
+.vertical .svc__ico { width: 70px; height: 70px; margin: 20px 0 14px; }
+.vertical .browser { zoom: 0.66; top: 42%; }
+.vertical .end { padding: 0 60px 300px; }
+.vertical .end__script { font-size: 70px; }
+.vertical .end__t { font-size: 56px; }
+.vertical .end__url { font-size: 36px; }
+.vertical .end__tel { flex-direction: column; gap: 10px; font-size: 28px; }
+.vertical .end__tel i { display: none; }
+.vertical .end__motto { font-size: 20px; letter-spacing: 0.16em; }
+.vertical .subs { bottom: 400px; max-width: 860px; font-size: 27px; margin-left: -40px; }
+.vertical .chrome__label, .vertical .chrome__tc { display: none; }
+.vertical .chrome__brand { left: 40px; top: 90px; font-size: 16px; }
+.vertical .chrome__url { right: 40px; top: 90px; font-size: 16px; }

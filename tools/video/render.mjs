@@ -9,9 +9,10 @@ const [out = 'frames', fpsArg = '30', fromArg = '0', toArg = '60', stepArg = '']
 const fps = Number(fpsArg), from = Number(fromArg), to = Number(toArg), step = stepArg ? Number(stepArg) : 1 / fps;
 mkdirSync(out, { recursive: true });
 const b = await chromium.launch({ executablePath: process.env.CHROMIUM || '/opt/pw-browsers/chromium', args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
-const p = await b.newPage({ viewport: { width: 1920, height: 1080 } });
+const VERT = !!process.env.VERT;
+const p = await b.newPage({ viewport: VERT ? { width: 1080, height: 1920 } : { width: 1920, height: 1080 } });
 p.on('pageerror', (e) => console.log('PAGEERR', e.message));
-await p.goto(`http://127.0.0.1:${process.env.PORT || 5190}/tools/video/index.html`);
+await p.goto(`http://127.0.0.1:${process.env.PORT || 5190}/tools/video/index.html${VERT ? '?v' : ''}`);
 await p.waitForFunction(() => window.__ready === true, null, { timeout: 180000 });
 await p.waitForTimeout(1500);
 const t0 = Date.now();

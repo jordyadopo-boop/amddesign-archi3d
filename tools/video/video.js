@@ -27,6 +27,9 @@ const ICONS = {
 const SVC_TIMES = [18.0, 24.5, 28.7, 32.7, 35.9, 39.8];
 const SVC_FLOOR = ['R+8 · Atelier', 'R+5 · Chantier', 'R+7 · Exposition', 'Vue aérienne', 'R+1 · Archives', 'R+6 · Salle 3D'];
 
+const VERTICAL = new URLSearchParams(location.search).has('v');
+if (VERTICAL) document.documentElement.classList.add('vertical');
+
 async function boot() {
   const world = await createWorld($('#world'), { mobile: false, reduced: false, base: '/', manual: true });
   const T = world.tower, S = world.shots;
@@ -60,6 +63,8 @@ async function boot() {
     // Zoom « punch » à chaque coupe : on entre légèrement serré et on se pose
     const since = t - s[0];
     st.fov = (st.fov ?? 38) + (s[0] > 0 ? 7 * (1 - ease(clamp(since / 0.7))) : 0);
+    // Vertical 9:16 : champ plus large pour garder le sujet dans le cadre
+    if (VERTICAL) st.fov = Math.min(85, st.fov * 1.6);
     return st;
   };
   const droneAt = (t) => {
