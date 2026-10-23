@@ -1,0 +1,16 @@
+<!-- Le monde 3D survolé en drone (fixe, derrière tout le contenu) + écran de contrôle du drone + curseur viseur. -->
+<canvas class="world" data-module="world" aria-hidden="true"></canvas>
+<div class="world-veil" aria-hidden="true"></div>
+<div class="hud" data-module="hud" aria-hidden="true">
+  <span class="hud__c hud__c--tl"></span><span class="hud__c hud__c--tr"></span><span class="hud__c hud__c--bl"></span><span class="hud__c hud__c--br"></span>
+  <div class="hud__rec"><i></i> REC <span data-hud="time">00:00</span> · AMD-DRONE 01</div>
+  <div class="hud__gps" data-hud="gps">5°21'36.0"N  4°00'28.8"O</div>
+  <div class="hud__data"><span>ALT <b data-hud="alt">000.0 m</b></span><span>CAP <b data-hud="cap">000°</b></span><span>VIT <b data-hud="spd">00 km/h</b></span></div>
+  <div class="hud__zone" data-hud="zone"></div>
+  <div class="hud__cross"></div>
+</div>
+<div class="cursor" data-module="fx-cursor" aria-hidden="true">
+  <span class="cursor__h" data-cur-h></span><span class="cursor__v" data-cur-v></span>
+  <span class="cursor__ring" data-cur-ring><i></i></span>
+  <span class="cursor__xy" data-cur-xy></span>
+</div>

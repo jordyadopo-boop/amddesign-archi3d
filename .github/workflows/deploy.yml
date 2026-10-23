@@ -1,0 +1,53 @@
+name: Mettre le site en ligne
+
+# Construit le site et le publie sur la branche gh-pages (servie par GitHub Pages).
+# Un commit dont le message contient « [wip] » est sauvegardé sans être mis en ligne.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[wip]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Installer les dépendances
+        run: npm ci
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      - name: Calculer le chemin de base
+        id: base
+        run: |
+          # Avec un domaine personnalisé (fichier public/CNAME), le site est servi à la racine.
+          if [ -f public/CNAME ]; then echo "path=/" >> "$GITHUB_OUTPUT";
+          else echo "path=/${GITHUB_REPOSITORY#*/}/" >> "$GITHUB_OUTPUT"; fi
+      - name: Construire le site
+        run: npm run build
+        env:
+          BASE_PATH: ${{ steps.base.outputs.path }}
+      - name: Désactiver Jekyll
+        run: touch dist/.nojekyll
+      - name: Publier sur la branche gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Mise en ligne'
