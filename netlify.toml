@@ -1,0 +1,21 @@
+# Mise en ligne sur Netlify : construit le site avec Vite et publie dist/ à la racine du domaine.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  BASE_PATH = "/"
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
+
+# Page « plan introuvable » pour les adresses inconnues
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# Cache long pour les fichiers versionnés (JS, CSS, polices)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
