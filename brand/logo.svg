@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 92" role="img" aria-label="AMD">
+  <g fill="none" stroke="#2b2b2b" stroke-width="12" stroke-linejoin="miter">
+    <path d="M6 84 L46 12 L86 84"/>
+    <path d="M96 84 V30 L121 60 L146 30 V84"/>
+    <path d="M160 26 V84 H174 A29 29 0 0 0 174 26 Z"/>
+  </g>
+  <g fill="#c8902e">
+    <rect x="38" y="48" width="7" height="7"/><rect x="47" y="48" width="7" height="7"/>
+    <rect x="38" y="57" width="7" height="7"/><rect x="47" y="57" width="7" height="7"/>
+  </g>
+  <path d="M174 40 A15 15 0 0 1 174 70" fill="none" stroke="#c8902e" stroke-width="4"/>
+</svg>
