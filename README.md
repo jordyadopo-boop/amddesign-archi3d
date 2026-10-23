@@ -4,8 +4,9 @@ Site d'AMD Design, cabinet d'architecture en Côte d'Ivoire : **Architecture •
 Adresse visée : **https://www.amddesign-archi3d.com**
 
 - **Accueil** : un seul monde 3D (Three.js) vu à travers la caméra d'un drone. Intro : le plan 2D d'un duplex se trace, les murs montent, le drone décolle ;
-  il survole les croquis, contourne le grand bâtiment à la croix dorée, entre dans la **Tour AMD** par le dernier étage
-  et descend, une section par étage, jusqu'aux fondations. Rendu argentique (grain, étalonnage, voile de lumière).
+  il survole les croquis, contourne le grand bâtiment à la croix dorée, entre dans la **Tour AMD** (forme vrillée, ascenseurs visibles) par le dernier étage
+  et descend en spirale le long de sa façade (il ressort et rentre à chaque étage), une section par étage, jusqu'aux fondations.
+  Style « plans transparents argentiques » : volumes en verre fantôme, traits argent et or, espaces verts, voirie, grain de pellicule.
 - **Fiche projet** (`projet.html`) : 4 étapes, esquisse 2D/3D générée en direct, cartouche d'architecte, PDF et envoi WhatsApp.
 - Mentions légales, page 404 « plan introuvable ».
 
