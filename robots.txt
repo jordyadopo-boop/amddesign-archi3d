@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.amddesign-archi3d.com/sitemap.xml
